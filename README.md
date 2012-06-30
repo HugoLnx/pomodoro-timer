@@ -6,7 +6,7 @@ A simple project to count your pomodoros time.
 ### How use it ###
 First of all, install it...
 
-    gem install pomodoro-timer
+    gem install pomodoro_timer
 
 After that you can open irb, require and include:
 
