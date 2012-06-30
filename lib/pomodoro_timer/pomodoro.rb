@@ -62,7 +62,7 @@ module PomodoroTimer
     end
 
     def beep
-      system "aplay #{File.join(File.dirname(__FILE__),"../#{BEEP_SOUND}")} --quiet"
+      system "aplay #{File.join(File.dirname(__FILE__),"../../#{BEEP_SOUND}")} --quiet"
     end
   end
 end
