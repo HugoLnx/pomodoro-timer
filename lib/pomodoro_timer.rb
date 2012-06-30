@@ -1,14 +1,14 @@
-$LOAD_PATH << File.dirname(__FILE__)
 require 'fixnum'
-require 'pomodoro_sprint'
+require 'pomodoro_timer/pomodoro'
+require 'pomodoro_timer/version'
 
 module PomodoroTimer
   extend self
 
   def start(what=nil)
-    @@sprint ||= nil
-    if @@sprint.nil? || @@sprint.finished?
-      @@sprint = PomodoroSprint.new(what)
+    @@pomodoro ||= nil
+    if @@pomodoro.nil? || @@pomodoro.finished?
+      @@pomodoro = Pomodoro.new(what)
     else
       puts "Exist another pomodoro running!"
     end
@@ -17,10 +17,10 @@ module PomodoroTimer
   end
 
   def cancel
-    @@sprint.cancel
+    @@pomodoro.cancel
   end
 
   def status
-    @@sprint.show_status
+    @@pomodoro.show_status
   end
 end
