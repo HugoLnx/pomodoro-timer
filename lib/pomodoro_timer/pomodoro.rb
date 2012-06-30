@@ -1,7 +1,7 @@
 module PomodoroTimer
   class Pomodoro
     BEEP_SOUND = "resources/ding.wav"
-    WORK_TIME = 5#25.minutes
+    WORK_TIME = 25.minutes
     BREAK_TIME = 5.minutes
 
     def initialize(what)
