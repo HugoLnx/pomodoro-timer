@@ -14,7 +14,7 @@ After that you can open irb, require and include:
 
 
 Now you have the methods:
-* start: Start one pomodoro "sprint".
+* start: Start one pomodoro.
 * status: Show if you are in break or work time and how much least to end.
 * cancel: Cancel your pomodoro.
 
@@ -27,6 +27,11 @@ Third: When break time ends you have to start another pomodoro manualy, using th
 
 Maybe you will want to ignore the break ding and work a litte more, it's okay, you can cancel the actual pomodoro and when you want take a break you can call the method start passing :break like this...
     start :break
+
+
+### Limitations ###
+* Was tested only in ubuntu, and I think that will not work in anothers OSs, because the gem uses the "aplay" built-in command to play the ding.
+* Has no way to pause a pomodoro. (Puporsely)
 
 ### About me ###
 * _Name:_ Hugo Roque
