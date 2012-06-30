@@ -1,5 +1,6 @@
 class PomodoroSprint
-  WORK_TIME = 25.minutes
+  BEEP_SOUND = "resources/ding.wav"
+  WORK_TIME = 5#25.minutes
   BREAK_TIME = 5.minutes
 
   def initialize(what)
@@ -60,6 +61,6 @@ private
   end
 
   def beep
-    5.times{system "beep";sleep 0.1}
+    system "aplay #{File.join(File.dirname(__FILE__),"../#{BEEP_SOUND}")} --quiet"
   end
 end
