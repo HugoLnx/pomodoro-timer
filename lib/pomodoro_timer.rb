@@ -2,7 +2,7 @@ $LOAD_PATH << File.dirname(__FILE__)
 require 'fixnum'
 require 'pomodoro_sprint'
 
-module Pomodoro
+module PomodoroTimer
   extend self
 
   def start(what=nil)

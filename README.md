@@ -9,7 +9,7 @@ First of all, install it...
 
 After that you can open irb, require and include:
     require 'rubygems'
-    require 'pomodoro'
+    require 'pomodoro_timer'
     include PomodoroTimer 
 
 
