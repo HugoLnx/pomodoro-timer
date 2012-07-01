@@ -1,68 +1,35 @@
 module PomodoroTimer
   class Pomodoro
-    BEEP_SOUND = "resources/ding.wav"
-    WORK_TIME = 25.minutes
-    BREAK_TIME = 5.minutes
+    attr_reader :running
 
-    def initialize(what)
-      @start = Time.now
-      @thread = Thread.new do
-        @work_progress = Time.now
-        if what.to_s != "break"
-          puts "It's work time! (#{format(@work_progress)})"
-          while @work_progress - @start < WORK_TIME
-            @work_progress = Time.now
-            sleep 1
-          end
-          beep
-        end
-
-        puts "It's break time!(#{format(@work_progress)})"
-        @break_progress = Time.now
-        while @break_progress - @work_progress < BREAK_TIME
-          @break_progress = Time.now
-          sleep 1
-        end
-
-        puts "Pomodoro finished!(#{format(@break_progress)})"
-
-        beep
-        @finished = true
-      end
+    def initialize(will_work=false)
+      @running = RunningThread.new(will_work)
       return nil
     end
 
     def show_status
-      if @finished
-        puts "It's done"
-      elsif @break_progress
-        puts "It's break time! (#{format_seconds(BREAK_TIME - (@break_progress-@work_progress))})"
+      cycle = @running.cycle
+      if cycle.stopped?
+        puts "No pomodoro running."
+      elsif cycle.break?
+        puts "It's break time! (#{format_seconds(cycle.missing_progress)})"
       else
-        puts "It's work time! (#{format_seconds(WORK_TIME - (@work_progress-@start))})"
+        puts "It's work time! (#{format_seconds(cycle.missing_progress)})"
       end
     end
 
     def cancel
-      @thread.kill
-      @finished = true
+      @running.kill
     end
 
     def finished?
-      return @finished
+      return @running.cycle.stopped?
     end
 
   private
 
-    def format(time)
-      return time.strftime("%H:%M")
-    end
-
     def format_seconds(seconds)
       return sprintf("%.2d:%.2d",seconds/60, seconds%60)
-    end
-
-    def beep
-      system "aplay #{File.join(File.dirname(__FILE__),"../../#{BEEP_SOUND}")} --quiet"
     end
   end
 end
