@@ -15,8 +15,8 @@ module PomodoroTimer
     }
 
     LIMITS = {
-      WORK_NAME => 25,#25.minutes,
-      BREAK_NAME => 5#5.minutes
+      WORK_NAME => 25.minutes,
+      BREAK_NAME => 5.minutes
     }
 
     class << self
